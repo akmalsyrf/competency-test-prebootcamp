@@ -1,0 +1,28 @@
+<div class="container-fluid bg-dark">
+  <div class="text-center text-light fs-2">Collections</div>
+  <% if (isLogin) { %>
+  <form class="input-group mt-4 w-50 offset-3" action="/add-collections" method="POST">
+    <input type="text" name="name" class="form-control" placeholder="Add collections" aria-describedby="button-addon2" />
+    <input type="hidden" name="userId" value="<%= userId %>" />
+    <button class="btn btn-danger" type="submit" id="button-addon2">Add</button>
+  </form>
+  <div class="container py-5">
+    <div class="d-flex flex-wrap">
+      <!-- task list -->
+      <% collections.forEach((col)=>{ %>
+      <a href="/collections/<%= col.id %>" class="card text-decoration-none text-dark ms-5 my-3 rounded-3 p-2" role="button" style="width: 10rem; height: 12rem">
+        <img src="/public/task.png" class="mx-3 img-fluid" width="100px" />
+        <div class="card-body">
+          <h5 class="card-title"><%= col.name %></h5>
+          <div class="d-flex">
+            <span class="card-text">3 done</span>
+            <!-- <img src="/public/todo.png" class="ms-3 img-fluid" width="30px" /> -->
+            <img src="/public/done.png" class="ms-3 img-fluid" width="30px" />
+          </div>
+        </div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+  <% } %>
+</div>

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="container px-5">
+    <div class="d-flex justify-content-between mt-3">
+      <a href="/" class="list-group-item bg-dark text-light"> <h2><%= collectionTitle %></h2> </a>
+      <div class="align-items-center">
+        <a href="/delete-collections/<%= collectionId %>" class="btn btn-danger me-2">Delete this collection</a>
+      </div>
+    </div>
+    <form class="input-group mt-4" action="/task" method="POST">
+      <input type="text" name="name" class="form-control" placeholder="Add todo" aria-describedby="button-addon2" />
+      <input type="hidden" name="collectionsId" value="<%= collectionId %>" />
+      <button class="btn btn-danger" type="submit" id="button-addon2">Add task</button>
+    </form>
+    <ul class="list-group my-5">
+      <!-- task -->
+      <h4 class="text-light mb-3">Task - 3</h4>
+      <% tasks.forEach((task)=>{ %> <% if (task.is_done == null) { %>
+      <li class="list-group-item justify-content-between d-flex">
+        <%= task.name %>
+        <a href="/done-task/<%= task.id %>" class="form-check-input me-1 btn btn-success">&#10004;</a>
+      </li>
+      <% } %> <% }) %>
+    </ul>
+    <!-- completed -->
+    <ul class="list-group my-5">
+      <h4 class="text-light mb-3">Completed - 3</h4>
+      <% tasks.forEach((task)=>{ %> <% if (task.is_done != null) { %>
+      <li class="list-group-item justify-content-between d-flex">
+        <%= task.name %>
+        <a href="/delete-task/<%= task.id %>" class="form-check-input me-1 btn btn-danger">&#10004;</a>
+      </li>
+      <% } %> <% }) %>
+    </ul>
+  </div>
+</div>

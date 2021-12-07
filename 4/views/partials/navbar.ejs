@@ -1,0 +1,80 @@
+<% if (message) { %>
+<div class="alert alert-<%= message.type %> alert-dismissible show" role="alert">
+  <%= message.message %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+<nav class="navbar sticky-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="navbar-brand"></div>
+    <div class="me-2">
+      <% if (isLogin) { %>
+      <a href="/logout" class="btn btn-danger px-3 me-2">Logout</a>
+      <% } else { %>
+      <a href="#loginModal" data-bs-toggle="modal" class="btn btn-danger px-3 me-2">Login</a>
+      <a href="#registerModal" data-bs-toggle="modal" class="btn btn-danger">Register</a>
+      <% } %>
+    </div>
+  </div>
+</nav>
+
+<!-- modal register -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-md modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">Register</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/register" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label">Your name</label>
+            <input type="text" name="name" class="form-control" id="name" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal login -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-md modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/login" method="POST">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
